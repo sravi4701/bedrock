@@ -1273,13 +1273,18 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 
-# Bug 1331069 - Double Click tracking pixel for download page.
-TRACKING_PIXEL_URL = ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
-                      'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try')
+# Bug 1331069, 1343033 - Double Click & Yahoo tracking pixels for download page.
+TRACKING_PIXELS = [
+    ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
+    'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try'),
+    'https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10022313',
+    'https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10022314',
+]
 
 if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
     CSP_IMG_SRC += (
         'ad.doubleclick.net',
+        'sp.analytics.yahoo.com',
     )
 
 # Bug 1340087 - Funnelcake experiments default to Windows 32bit and en-US builds only.
