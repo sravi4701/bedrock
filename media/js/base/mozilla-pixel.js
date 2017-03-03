@@ -33,13 +33,14 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
 
-        pixels = pixels.split(',');
+        // '::' is a separator for each pixel URL.
+        pixels = pixels.split('::');
 
         for (var i = 0; i < pixels.length; i++) {
             $pixel = $('<img />', {
                 width: '1',
                 height: '1',
-                src: pixels[i].trim()
+                src: pixels[i].replace(/\s/g, '')
             });
             $pixel.addClass('moz-px');
             $body.append($pixel);

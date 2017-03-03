@@ -23,7 +23,7 @@ describe('mozilla-pixel.js', function() {
         });
 
         it('should add multiple pixels to document body', function() {
-            var pixels = '/img/foo.png, /img/foo.png?v=1, /img/foo.png?v=2';
+            var pixels = '/img/foo.png::/img/foo.png?v=1::/img/foo.png?v=2';
             spyOn(window, '_dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);
             Mozilla.Pixel.init();
